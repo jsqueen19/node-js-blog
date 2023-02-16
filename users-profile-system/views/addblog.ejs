@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a blog</title>
+</head>
+
+<body>
+    <form id="myForm">
+        <input type="text" value="13" name="id" id="id-number" hidden>
+
+        Author name: <input type="text" name="author" placeholder="john Doe" id="author">
+        <br>
+        Title: <input type="text" name="title" placeholder="champions league" id="title">
+        <br>
+        Body: <textarea name="body" cols="30" rows="10" id="body"></textarea>
+        <br>
+        <input type="datetime-local" name="date" id="date">
+        <br>
+        <button type="submit">Add blog</button>
+
+    </form>
+    <script>
+
+        document.getElementById('myForm').addEventListener('submit', async (e) => {
+            e.preventdefault();
+
+            const id = document.getElementById("id-number").value;
+            const author = document.getElementById("author").value;
+            const title = document.getElementById("title").value;
+            const body = document.getElementById("body").value;
+            const date = document.getElementById("date").value;
+
+            const profile = {
+                id,
+                author,
+                title,
+                body,
+                date
+            }
+            const url = 'http://localhost:3000/addblog';
+            const response = await fetch(url, {
+                method: "POST",
+                body: JSON.stringify(profile),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            })
+            const data = await response.json();
+            window.alert(data.message);
+        })
+    </script>
+</body>
+
+</html>

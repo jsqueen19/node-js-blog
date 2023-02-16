@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fantasy Blogs</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header></header>
+
+    <div class="container">
+      <% for (let i = 0; i < blogs.length; i++) { %>
+      <div class="blog">
+        <h3>Author's Name: <%= blogs[i].author %></h3>
+        <h3>Title: <%= blogs[i].title %></h3>
+        <h3>Published: <%= blogs[i].date %></h3>
+        <p><%= blogs[i].body %></p>
+
+        <a href="/blog?id=<%= blogs[i].id %>">View More</a>
+          <button onclick="deleteBlog('<%= blogs[i].id %>')">Delete Blog</button>
+      </div>
+      <% } %>
+    </div>
+    <script>
+      async function deleteBlog(id) {
+        let url = "http://localhost:3000/deleteBlog?id=" +id;
+        const response = await fetch (url,{
+          method: "DELETE",
+        });
+        await response.json();
+        window.location.reload();
+      }
+    </script>
+  </body>
+</html>

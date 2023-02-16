@@ -1,0 +1,19 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    margin: 0 10px;
+}
+
+.blog {
+    border: 1px solid black;
+    margin: 15px 0px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+h3 {
+    margin: 5px 0px;
+}
+
